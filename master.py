@@ -29,7 +29,7 @@ def random_state(height,width):
 	for x in range(0,x_height):
 		for y in range(0,y_width):
 			random_int = random.random()
-			if random_int > .9:
+			if random_int > .55:
 				cell_state = LIVE
 			else:
 				cell_state = DEAD
@@ -50,7 +50,7 @@ def render(board):
 #calculate the next cell state
 def get_next_cell(coords,inputboard):
 	"""Calculate the next state of an individual cell"""
- 	x = coords[0]
+	x = coords[0]
 	y = coords[1]
 	height = get_height(inputboard)
 	width = get_width(inputboard)
@@ -68,7 +68,7 @@ def get_next_cell(coords,inputboard):
 	if inputboard[x][y] == LIVE:
 		if n_neighbors <= 1:
 			cell_state = DEAD
-		if n_neighbors <=3:
+		elif n_neighbors <=3:
 			cell_state = LIVE
 		else:
 			cell_state = DEAD
@@ -104,7 +104,7 @@ def run_program(init_state):
 	while True:
 		render(next_state)
 		next_state = get_next_state(next_state)
-		time.sleep(.03)
+		time.sleep(.1)
 		
 new_random_board = random_state(20,40)		
 run_program(new_random_board)
